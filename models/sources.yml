@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: raw
+    database: "la_dona"
+    schema: dbo
+    tables:
+      - name: ventas
+      - name: backorder
+      - name: depositos
+      - name: productos
+      - name: productos_por_deposito
+      - name: clientes
+      - name: motivo_de_devolucion
+      - name: export_all
