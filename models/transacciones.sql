@@ -1,30 +1,30 @@
 {{ config(materialized='table') }}
 
 select
-	fecha,
-	tipo_de_transaccion as tipo,
-	cantidad,
-	precio as precio_unitario,
-	costo,
-	codigo_de_cliente as cliente_id,
-	codigo_de_producto as producto_id,
+	FECHA as fecha,
+	[TIPO DE TRANSACCION] as tipo,
+	CANTIDAD as cantidad,
+	PRECIO as precio_unitario,
+	COSTO as costo,
+	[CODIGO DE CLIENTE] as cliente_id,
+	[CODIGO DE PRODUCTO] as producto_id,
 	(
 		CASE 
-            WHEN [tipo_de_transaccion] = 'FACTURA' 
-                 THEN [importe_de_la_linea] - [descuento_de_la_linea]
+            WHEN [TIPO DE TRANSACCION] = 'FACTURA' 
+                 THEN [IMPORTE DE LA LINEA] - [DESCUENTO DE LA LINEA]
             ELSE 0
         END
 	) as total_bruto,
 	(
 		CASE 
-            WHEN [tipo_de_transaccion] = 'FACTURA' 
-                 THEN [importe_de_la_linea] - [descuento_de_la_linea]
-            WHEN [tipo_de_transaccion] = 'NOTA DE CREDITO' 
-                 AND md.[es_gasto] = 'NO'
-                 THEN -([importe_de_la_linea] - [descuento_de_la_linea])
+            WHEN [TIPO DE TRANSACCION] = 'FACTURA' 
+                 THEN [IMPORTE DE LA LINEA] - [DESCUENTO DE LA LINEA]
+            WHEN [TIPO DE TRANSACCION] = 'NOTA DE CREDITO' 
+                 AND [ES GASTO] = 'NO'
+                 THEN -([IMPORTE DE LA LINEA] - [DESCUENTO DE LA LINEA])
             ELSE 0
         END
 	) as total_neto
-from {{ source('raw', 'ventas') }} as v
-LEFT JOIN {{ source('raw', 'motivo_de_devolucion') }} as md
-    ON md.codigo_de_motivo_de_devolucion = v.codigo_de_motivo_de_devolucion
+from AINOMICS.dbo.VENTAS as v
+LEFT JOIN AINOMICS.dbo.[MOTIVO DE DEVOLUCION] as md
+    ON md.[CODIGO DE MOTIVO DE DEVOLUCION] = v.[CODIGO DE MOTIVO DE DEVOLUCION]

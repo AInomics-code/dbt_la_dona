@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 
 select
-	codigo_de_producto as producto_id,
-	codigo_de_deposito as deposito_id,
-	existencia as cantidad
-from {{ source('raw', 'productos_por_deposito') }}
+	[CODIGO DE PRODUCTO] as producto_id,
+	[CODIGO DE DEPOSITO] as deposito_id,
+	EXISTENCIA as cantidad
+from AINOMICS.dbo.[PRODUCTOS POR DEPOSITO]

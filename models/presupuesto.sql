@@ -21,8 +21,8 @@ select
             AS VARCHAR(2)), 2) + '-01'
         AS DATE
     ) AS fecha,
-    presupuesto,
-    clientes.codigo_de_cliente as cliente_id,
-    clientes.nombre_de_cliente as cliente_nombre
-from {{ source('raw', 'export_all') }}
-inner join {{ source('raw', 'clientes') }} on export_all.codigo_de_cliente = clientes.codigo_de_cliente
+    PRESUPUESTO as presupuesto,
+    clientes.[CODIGO DE CLIENTE] as cliente_id,
+    clientes.[NOMBRE DE CLIENTE] as cliente_nombre
+from AINOMICS.dbo.presupuesto_por_cliente
+inner join AINOMICS.dbo.CLIENTES as clientes on presupuesto_por_cliente.codigo_de_cliente = clientes.[CODIGO DE CLIENTE] 

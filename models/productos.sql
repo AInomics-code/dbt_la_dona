@@ -1,9 +1,9 @@
 {{ config(materialized='table') }}
 
 select
-    codigo_de_producto as producto_id,
-    nombre_de_producto as nombre,
-    estado,
-    costo,
-    marca
-from {{ source('raw', 'productos') }}
+    [CODIGO DE PRODUCTO]  as producto_id,
+    [NOMBRE DE PRODUCTO]  as nombre,
+    ESTADO as estado,
+    COSTO as costo,
+    MARCA as marca
+from AINOMICS.dbo.PRODUCTOS
