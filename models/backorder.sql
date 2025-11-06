@@ -1,10 +1,22 @@
-{{ config(materialized='table') }}
+{{ config(
+    materialized='table',
+    pre_hook="{{ drop_backup_relation() }}"
+) }}
 
 select
-	[FECHA DE PEDIDO] as fecha,
-	[CODIGO DE CLIENTE] as cliente_id,
-	[CODIGO DE PRODUCTO] as producto_id,
-	[CODIGO DE DEPOSITO] as deposito_id,
-	[CANTIDAD PENDIENTE]  as cantidad,
-	COSTO as costo
-from AINOMICS.dbo.BACKORDER
+    backorder.fecha_de_pedido as date,
+    backorder.numero_de_pedido as order_id,
+    backorder.codigo_de_deposito as location_id,
+    backorder.codigo_de_cliente as client_id,
+    vendedores.nombre_de_vendedor as seller_name,
+    backorder.codigo_de_producto as product_id,
+    backorder.fecha_de_pedido as expected_delivery_date,
+    backorder.fecha_de_pedido as actual_delivery_date,
+    1 as days_delayed,
+    backorder.cantidad_pedida as order_qty,
+    backorder.cantidad_entregada as delivery_qty,
+    backorder.cantidad_pendiente as backorder_qty,
+    backorder.precio as unit_price
+from {{ source('raw', 'backorder') }}
+left join client_data.src_ladona.vendedores
+    on vendedores.codigo_de_vendedor = backorder.codigo_de_vendedor

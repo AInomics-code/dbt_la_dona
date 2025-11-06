@@ -2,14 +2,13 @@ version: 2
 
 sources:
   - name: raw
-    database: "AINOMICS"
-    schema: dbo
+    database: client_data
+    schema: src_ladona
     tables:
-      - name: ventas
-      - name: backorder
-      - name: depositos
       - name: productos
+      - name: depositos
+      - name: presupuesto_por_cliente
       - name: productos_por_deposito
       - name: clientes
-      - name: motivo_de_devolucion
-      - name: export_all
+      - name: backorder
+      - name: ventas
