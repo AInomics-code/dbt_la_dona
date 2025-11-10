@@ -27,7 +27,7 @@ select
             ELSE 0
         END
 	) as net_amount,
-    ventas.quantity as discount_amount,
+    ventas.cantidad as discount_amount,
     ventas.codigo_de_cliente as client_id,
     vendedores.nombre_de_vendedor as seller_name
 from {{ source('raw', 'ventas') }}
