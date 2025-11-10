@@ -11,7 +11,7 @@ select
     provincias.nombre_de_provincia as state,
     clientes.ciudad as city,
     distritos.nombre_de_distrito as district,
-    corregimientos.nombre_de_corregimiento as subdistrict,
+    corregimientos.nombre_de_corregimiento as subdistrict
 from {{ source('raw', 'clientes') }}
 left join client_data.src_ladona.grupos
     on grupos.codigo_de_grupo = clientes.codigo_de_grupo
