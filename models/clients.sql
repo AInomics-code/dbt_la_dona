@@ -18,3 +18,11 @@ left join client_data.src_ladona.distritos
     on distritos.codigo_de_distrito = clientes.codigo_de_distrito
 left join client_data.src_ladona.corregimientos
     on corregimientos.codigo_de_corregimiento = clientes.codigo_de_corregimiento
+
+
+
+    * pais            panama
+* provincia       chiriqui
+ciudad          david
+* distrito        bugaba
+corregimiento   concepcion
