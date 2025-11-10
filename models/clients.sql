@@ -9,7 +9,7 @@ select
     grupos.nombre_del_grupo as client_group,
     clientes.pais as country,
     provincias.nombre_de_provincia as state,
-    clientes.ciudad as city
+    clientes.ciudad as city,
     distritos.nombre_de_distrito as district,
     corregimientos.nombre_de_corregimiento as subdistrict,
 from {{ source('raw', 'clientes') }}
