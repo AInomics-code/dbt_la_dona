@@ -34,4 +34,4 @@ from {{ source('raw', 'ventas') }}
 left join client_data.src_ladona.vendedores
     on vendedores.codigo_de_vendedor = ventas.codigo_de_vendedor
 left join client_data.src_ladona.motivos_de_devolucion
-    on motivos_de_devolucion.codigo_de_motivo_de_devolucion = ventas.codigo_de_motivo_de_devolucion
+    on lower(motivos_de_devolucion.codigo_de_motivo_de_devolucion) = lower(ventas.codigo_de_motivo_de_devolucion)
