@@ -16,7 +16,8 @@ select
     backorder.cantidad_pedida as order_qty,
     backorder.cantidad_entregada as delivery_qty,
     backorder.cantidad_pendiente as backorder_qty,
-    backorder.precio as unit_price
+    backorder.precio as unit_price,
+    backorder.venta as total
 from {{ source('raw', 'backorder') }}
 left join client_data.src_ladona.vendedores
     on vendedores.codigo_de_vendedor = backorder.codigo_de_vendedor
