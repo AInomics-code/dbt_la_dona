@@ -4,7 +4,7 @@
 ) }}
 
 select
-    codigo_de_producto as product_id,
-    existencia as inventory_qty,
-    codigo_de_deposito as location_id
-from {{ source('raw', 'productos_por_deposito') }}
+    productos_por_deposito."CODIGO DE PRODUCTO" as product_id,
+    productos_por_deposito."EXISTENCIA" as inventory_qty,
+    productos_por_deposito."CODIGO DE DEPOSITO" as location_id
+from client_data.dbo."PRODUCTOS POR DEPOSITO" as productos_por_deposito
