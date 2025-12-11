@@ -4,17 +4,17 @@
 ) }}
 
 select
-    productos.codigo_de_producto as product_id,
-    productos.nombre_del_producto as product_name,
-    productos.codigo_de_barra as code,
-    (productos.estado = 'ACTIVO') as state,
-    productos.marca as brand,
-    tipos.nombre_de_tipo as category,
-    clases.nombre_de_clase as subcategory,
-    productos.unidad_de_medida as measure,
-    (productos.maquila = 'SI') as outsourced
-from {{ source('raw', 'productos') }}
-left join client_data.src_ladona.tipos
-	on tipos.codigo_de_tipo = productos.codigo_de_tipo
-left join client_data.src_ladona.clases
-	on clases.codigo_de_clase = productos.codigo_de_clase
+    productos."CODIGO DE PRODUCTO" as product_id,
+    productos."NOMBRE DE PRODUCTO" as product_name,
+    productos."CODIGO DE BARRA" as code,
+    (productos."ESTADO" = 'ACTIVO') as state,
+    productos."MARCA" as brand,
+    tipos."NOMBRE DE TIPO" as category,
+    clases."NOMBRE DE CLASE" as subcategory,
+    productos."UNIDAD DE MEDIDA" as measure,
+    (productos."MAQUILA" = 'SI') as outsourced
+from client_data.dbo."PRODUCTOS" as productos
+left join client_data.dbo."TIPOS" as tipos
+	on tipos."CODIGO DE TIPO" = productos."CODIGO DE TIPO"
+left join client_data.dbo."CLASES" as clases
+	on clases."CODIGO DE CLASE" = productos."CODIGO DE CLASE"
