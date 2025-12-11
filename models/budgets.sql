@@ -9,6 +9,6 @@ select
         RIGHT('0' || CAST(MES AS VARCHAR(2)), 2) || '-01'
         AS DATE
     ) AS date,
-    presupuesto as budget,
+    "PRESUPUESTO" as budget,
     codigo_de_cliente as customer_id
-from {{ source('raw', 'presupuesto_por_cliente') }}
+from client_data.dbo.presupuesto_por_cliente

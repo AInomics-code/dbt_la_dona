@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: raw
     database: client_data
-    schema: src_ladona
+    schema: dbo
     tables:
       - name: productos
       - name: depositos
