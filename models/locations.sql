@@ -4,7 +4,7 @@
 ) }}
 
 select
-    codigo_de_deposito as location_id,
-    nombre_de_deposito as location_name,
-    ciudad as city
-from {{ source('raw', 'depositos') }}
+    depositos."CODIGO DE DEPOSITO" as location_id,
+    depositos."NOMBRE DE DEPOSITO" as location_name,
+    depositos."CIUDAD" as city
+from client_data.dbo."DEPOSITOS" as depositos
