@@ -4,20 +4,20 @@
 ) }}
 
 select
-    clientes.codigo_de_cliente as client_id,
-    clientes.nombre_del_cliente as client_name,
-    grupos.nombre_del_grupo as client_group,
-    clientes.pais as country,
-    provincias.nombre_de_provincia as state,
-    clientes.ciudad as city,
-    distritos.nombre_de_distrito as district,
-    corregimientos.nombre_de_corregimiento as subdistrict
-from {{ source('raw', 'clientes') }}
-left join client_data.src_ladona.grupos
-    on grupos.codigo_de_grupo = clientes.codigo_de_grupo
-left join client_data.src_ladona.distritos
-    on distritos.codigo_de_distrito = clientes.codigo_de_distrito
-left join client_data.src_ladona.corregimientos
-    on corregimientos.codigo_de_corregimiento = clientes.codigo_de_corregimiento
-left join client_data.src_ladona.provincias
-    on provincias.codigo_de_provincia = clientes.codigo_de_provincia
+    clientes."CODIGO DE CLIENTE" as client_id,
+    clientes."NOMBRE DE CLIENTE" as client_name,
+    grupos."NOMBRE DE GRUPO" as client_group,
+    clientes."PAIS" as country,
+    provincias."NOMBRE DE PROVINCIA" as state,
+    clientes."CIUDAD" as city,
+    distritos."NOMBRE DE DISTRITO" as district,
+    corregimientos."NOMNBRE DE CORREGIMIENTO" as subdistrict
+from client_data.dbo."CLIENTES" as clientes
+left join client_data.dbo."GRUPOS" as grupos
+    on grupos."CODIGO DE GRUPO" = clientes."CODIGO DE GRUPO"
+left join client_data.dbo."DISTRITOS" as distritos
+    on distritos."CODIGO DE DISTRITO" = clientes."CODIGO DE DISTRITO"
+left join client_data.dbo."CORREGIMIENTOS" as corregimientos
+    on corregimientos."CODIGO DE CORREGIMIENTO" = clientes."CODIGO DE CORREGIMIENTO"
+left join client_data.dbo."PROVINCIAS" as provincias
+    on provincias."CODIGO DE PROVINCIA" = clientes."CODIGO DE PROVINCIA"
