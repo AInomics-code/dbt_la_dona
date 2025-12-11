@@ -4,34 +4,34 @@
 ) }}
 
 select
-    ventas.fecha as date,
+    ventas."FECHA" as date,
     'SALE' as transaction_type,
-    ventas.codigo_de_producto as product_id,
-    ventas.precio as unit_price,
-    ventas.cantidad as quantity,
-    ventas.costo as unit_cost,
+    ventas."CODIGO DE PRODUCTO" as product_id,
+    ventas."PRECIO" as unit_price,
+    ventas."CANTIDAD" as quantity,
+    ventas."COSTO" as unit_cost,
     (
 		CASE 
-            WHEN ventas.tipo_de_transaccion = 'FACTURA' 
-                 THEN ventas.importe_de_la_linea - ventas.descuento_de_la_linea
+            WHEN ventas."TIPO DE TRANSACCION" = 'FACTURA' 
+                 THEN ventas."IMPORTE DE LA LINEA" - ventas."DESCUENTO DE LA LINEA"
             ELSE 0
         END
 	) as gross_amount,
 	(
 		CASE 
-            WHEN ventas.tipo_de_transaccion = 'FACTURA' 
-                 THEN ventas.importe_de_la_linea - ventas.descuento_de_la_linea
-            WHEN ventas.tipo_de_transaccion = 'NOTA DE CREDITO' 
-                 AND motivos_de_devolucion.es_gasto = 'NO'
-                 THEN -(ventas.importe_de_la_linea - ventas.descuento_de_la_linea)
+            WHEN ventas."TIPO DE TRANSACCION" = 'FACTURA' 
+                 THEN ventas."IMPORTE DE LA LINEA" - ventas."DESCUENTO DE LA LINEA"
+            WHEN ventas."TIPO DE TRANSACCION" = 'NOTA DE CREDITO' 
+                 AND motivos_de_devolucion."ES GASTO" = 'NO'
+                 THEN -(ventas."IMPORTE DE LA LINEA" - ventas."DESCUENTO DE LA LINEA")
             ELSE 0
         END
 	) as net_amount,
-    ventas.cantidad as discount_amount,
-    ventas.codigo_de_cliente as client_id,
-    vendedores.nombre_de_vendedor as seller_name
-from {{ source('raw', 'ventas') }}
-left join client_data.src_ladona.vendedores
-    on vendedores.codigo_de_vendedor = ventas.codigo_de_vendedor
-left join client_data.src_ladona.motivos_de_devolucion
-    on lower(motivos_de_devolucion.codigo_de_motivo_de_devolucion) = lower(ventas.codigo_de_motivo_de_devolucion)
+    ventas."CANTIDAD" as discount_amount,
+    ventas."CODIGO DE CLIENTE" as client_id,
+    vendedores."NOMBRE DE VENDEDOR" as seller_name
+from client_data.dbo."VENTAS" as ventas
+left join client_data.dbo."VENDEDORES" as vendedores
+    on vendedores."CODIGO DE VENDEDOR" = ventas."CODIGO DE VENDEDOR"
+left join client_data.dbo."MOTIVO DE DEVOLUCION" as motivos_de_devolucion
+    on lower(motivos_de_devolucion."CODIGO DE MOTIVO DE DEVOLUCION") = lower(ventas."CODIGO DE MOTIVO DE DEVOLUCION")
