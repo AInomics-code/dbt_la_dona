@@ -10,5 +10,5 @@ select
         AS DATE
     ) AS date,
     "PRESUPUESTO" as budget,
-    codigo_de_cliente as customer_id
+    codigo_de_cliente as client_id
 from client_data.dbo.presupuesto_por_cliente

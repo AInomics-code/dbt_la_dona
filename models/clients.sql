@@ -6,11 +6,15 @@
 select
     clientes."CODIGO DE CLIENTE" as client_id,
     clientes."NOMBRE DE CLIENTE" as client_name,
+    clientes."CODIGO DE GRUPO" as client_group_code,
     grupos."NOMBRE DE GRUPO" as client_group,
     clientes."PAIS" as country,
+    clientes."CODIGO DE PROVINCIA" as state_code,
     provincias."NOMBRE DE PROVINCIA" as state,
+    clientes."CODIGO DE DISTRITO" as district_code,
     clientes."CIUDAD" as city,
     distritos."NOMBRE DE DISTRITO" as district,
+    clientes."CODIGO DE CORREGIMIENTO" as subdistrict_code,
     corregimientos."NOMNBRE DE CORREGIMIENTO" as subdistrict
 from client_data.dbo."CLIENTES" as clientes
 left join client_data.dbo."GRUPOS" as grupos

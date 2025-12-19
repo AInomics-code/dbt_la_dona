@@ -13,3 +13,11 @@ sources:
       - name: backorder
       - name: ventas
       - name: motivos_de_devolucion
+      - name: vendedores
+      - name: grupos
+      - name: distritos
+      - name: corregimientos
+      - name: provincias
+      - name: tipos
+      - name: clases
+      - name: estado_de_cuenta_de_clientes

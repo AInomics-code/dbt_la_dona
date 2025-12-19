@@ -9,7 +9,9 @@ select
     productos."CODIGO DE BARRA" as code,
     (productos."ESTADO" = 'ACTIVO') as state,
     productos."MARCA" as brand,
+    productos."CODIGO DE TIPO" as category_code,
     tipos."NOMBRE DE TIPO" as category,
+    productos."CODIGO DE CLASE" as subcategory_code,
     clases."NOMBRE DE CLASE" as subcategory,
     productos."UNIDAD DE MEDIDA" as measure,
     (productos."MAQUILA" = 'SI') as outsourced
