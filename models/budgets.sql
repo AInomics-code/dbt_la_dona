@@ -10,5 +10,8 @@ select
         AS DATE
     ) AS date,
     "PRESUPUESTO" as budget,
-    codigo_de_cliente as client_id
+    codigo_de_cliente as client_id,
+    "NOMBRE DE CLIENTE" as client_name
 from client_data.dbo.presupuesto_por_cliente
+inner join client_data.dbo.clientes
+    on presupuesto_por_cliente.codigo_de_cliente = clientes.id
