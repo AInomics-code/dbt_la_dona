@@ -5,13 +5,15 @@
 
 select
     CAST(
-        CAST(anio AS VARCHAR(4)) || '-' ||
-        RIGHT('0' || CAST(MES AS VARCHAR(2)), 2) || '-01'
+        CAST(presupuesto_por_cliente.anio AS VARCHAR(4)) || '-' ||
+        RIGHT('0' || CAST(presupuesto_por_cliente.MES AS VARCHAR(2)), 2) || '-01'
         AS DATE
     ) AS date,
-    "PRESUPUESTO" as budget,
-    codigo_de_cliente as client_id,
-    "NOMBRE DE CLIENTE" as client_name
-from client_data.dbo.presupuesto_por_cliente
-inner join client_data.dbo.clientes
-    on presupuesto_por_cliente.codigo_de_cliente = clientes.id
+   presupuesto_por_cliente."PRESUPUESTO" as budget,
+    presupuesto_por_cliente.codigo_de_cliente as client_id,clientes."CODIGO DE CLIENTE" as client_code, 
+    clientes."NOMBRE DE CLIENTE" as client_name
+from client_data.dbo.presupuesto_por_cliente as presupuesto_por_cliente
+inner join client_data.dbo."CLIENTES" as clientes
+    on presupuesto_por_cliente.codigo_de_cliente = clientes."CODIGO DE CLIENTE"
+where presupuesto_por_cliente._fivetran_deleted = false
+    and clientes._fivetran_deleted = false
