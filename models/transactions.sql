@@ -45,3 +45,7 @@ left join client_data.dbo."PROVINCIAS" as provincias_vendedor
     on provincias_vendedor."CODIGO DE PROVINCIA" = vendedores."CODIGO DE PROVINCIA"
 left join client_data.dbo."MOTIVO DE DEVOLUCION" as motivos_de_devolucion
     on lower(motivos_de_devolucion."CODIGO DE MOTIVO DE DEVOLUCION") = lower(ventas."CODIGO DE MOTIVO DE DEVOLUCION")
+where ventas._fivetran_deleted = false
+    and vendedores._fivetran_deleted = false
+    and provincias_vendedor._fivetran_deleted = false
+    and motivos_de_devolucion._fivetran_deleted = false

@@ -8,3 +8,4 @@ select
     depositos."NOMBRE DE DEPOSITO" as location_name,
     depositos."CIUDAD" as city
 from client_data.dbo."DEPOSITOS" as depositos
+where depositos._fivetran_deleted = false

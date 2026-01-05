@@ -25,3 +25,8 @@ left join client_data.dbo."CORREGIMIENTOS" as corregimientos
     on corregimientos."CODIGO DE CORREGIMIENTO" = clientes."CODIGO DE CORREGIMIENTO"
 left join client_data.dbo."PROVINCIAS" as provincias
     on provincias."CODIGO DE PROVINCIA" = clientes."CODIGO DE PROVINCIA"
+where clientes._fivetran_deleted = false
+    and grupos._fivetran_deleted = false
+    and distritos._fivetran_deleted = false
+    and corregimientos._fivetran_deleted = false
+    and provincias._fivetran_deleted = false

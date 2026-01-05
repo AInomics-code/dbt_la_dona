@@ -26,3 +26,6 @@ left join client_data.dbo."VENDEDORES" AS vendedores
     on vendedores."CODIGO DE VENDEDOR" = backorder."CODIGO DE VENDEDOR"
 left join client_data.dbo."PROVINCIAS" as provincias_vendedor
     on provincias_vendedor."CODIGO DE PROVINCIA" = vendedores."CODIGO DE PROVINCIA"
+where backorder._fivetran_deleted = false
+    and vendedores._fivetran_deleted = false
+    and provincias_vendedor._fivetran_deleted = false

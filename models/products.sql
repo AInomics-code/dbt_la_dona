@@ -20,3 +20,6 @@ left join client_data.dbo."TIPOS" as tipos
 	on tipos."CODIGO DE TIPO" = productos."CODIGO DE TIPO"
 left join client_data.dbo."CLASES" as clases
 	on clases."CODIGO DE CLASE" = productos."CODIGO DE CLASE"
+where productos._fivetran_deleted = false
+    and tipos._fivetran_deleted = false
+    and clases._fivetran_deleted = false

@@ -19,3 +19,4 @@ select
     END as aging_bucket
 from client_data.dbo."ESTADO DE CUENTA DE CLIENTES" as estado_cuenta
 where estado_cuenta."SALDO DEL DOCUMENTO" > 0
+    and estado_cuenta._fivetran_deleted = false
