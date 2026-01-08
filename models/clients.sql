@@ -18,15 +18,11 @@ select
     corregimientos."NOMNBRE DE CORREGIMIENTO" as subdistrict
 from client_data.dbo."CLIENTES" as clientes
 left join client_data.dbo."GRUPOS" as grupos
-    on grupos."CODIGO DE GRUPO" = clientes."CODIGO DE GRUPO"
+    on grupos."CODIGO DE GRUPO" = clientes."CODIGO DE GRUPO" and grupos._fivetran_deleted = false
 left join client_data.dbo."DISTRITOS" as distritos
-    on distritos."CODIGO DE DISTRITO" = clientes."CODIGO DE DISTRITO"
+    on distritos."CODIGO DE DISTRITO" = clientes."CODIGO DE DISTRITO" and distritos._fivetran_deleted = false
 left join client_data.dbo."CORREGIMIENTOS" as corregimientos
-    on corregimientos."CODIGO DE CORREGIMIENTO" = clientes."CODIGO DE CORREGIMIENTO"
+    on corregimientos."CODIGO DE CORREGIMIENTO" = clientes."CODIGO DE CORREGIMIENTO" and corregimientos._fivetran_deleted = false
 left join client_data.dbo."PROVINCIAS" as provincias
-    on provincias."CODIGO DE PROVINCIA" = clientes."CODIGO DE PROVINCIA"
+    on provincias."CODIGO DE PROVINCIA" = clientes."CODIGO DE PROVINCIA" and provincias._fivetran_deleted = false
 where clientes._fivetran_deleted = false
-    and grupos._fivetran_deleted = false
-    and distritos._fivetran_deleted = false
-    and corregimientos._fivetran_deleted = false
-    and provincias._fivetran_deleted = false

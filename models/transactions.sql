@@ -40,12 +40,9 @@ select
     provincias_vendedor."NOMBRE DE PROVINCIA" as seller_province_name
 from client_data.dbo."VENTAS" as ventas
 left join client_data.dbo."VENDEDORES" as vendedores
-    on vendedores."CODIGO DE VENDEDOR" = ventas."CODIGO DE VENDEDOR"
+    on vendedores."CODIGO DE VENDEDOR" = ventas."CODIGO DE VENDEDOR" and vendedores._fivetran_deleted = false
 left join client_data.dbo."PROVINCIAS" as provincias_vendedor
-    on provincias_vendedor."CODIGO DE PROVINCIA" = vendedores."CODIGO DE PROVINCIA"
+    on provincias_vendedor."CODIGO DE PROVINCIA" = vendedores."CODIGO DE PROVINCIA" and provincias_vendedor._fivetran_deleted = false
 left join client_data.dbo."MOTIVO DE DEVOLUCION" as motivos_de_devolucion
-    on lower(motivos_de_devolucion."CODIGO DE MOTIVO DE DEVOLUCION") = lower(ventas."CODIGO DE MOTIVO DE DEVOLUCION")
+    on lower(motivos_de_devolucion."CODIGO DE MOTIVO DE DEVOLUCION") = lower(ventas."CODIGO DE MOTIVO DE DEVOLUCION") and motivos_de_devolucion._fivetran_deleted = false
 where ventas._fivetran_deleted = false
-    and vendedores._fivetran_deleted = false
-    and provincias_vendedor._fivetran_deleted = false
-    and motivos_de_devolucion._fivetran_deleted = false

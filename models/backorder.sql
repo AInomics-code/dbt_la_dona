@@ -23,9 +23,7 @@ select
     backorder."VENTA" as total
 from client_data.dbo."BACKORDER" AS backorder
 left join client_data.dbo."VENDEDORES" AS vendedores
-    on vendedores."CODIGO DE VENDEDOR" = backorder."CODIGO DE VENDEDOR"
+    on vendedores."CODIGO DE VENDEDOR" = backorder."CODIGO DE VENDEDOR" and vendedores._fivetran_deleted = false
 left join client_data.dbo."PROVINCIAS" as provincias_vendedor
-    on provincias_vendedor."CODIGO DE PROVINCIA" = vendedores."CODIGO DE PROVINCIA"
+    on provincias_vendedor."CODIGO DE PROVINCIA" = vendedores."CODIGO DE PROVINCIA" and provincias_vendedor._fivetran_deleted = false
 where backorder._fivetran_deleted = false
-    and vendedores._fivetran_deleted = false
-    and provincias_vendedor._fivetran_deleted = false

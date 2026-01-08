@@ -14,6 +14,5 @@ select
     clientes."NOMBRE DE CLIENTE" as client_name
 from client_data.dbo.presupuesto_por_cliente as presupuesto_por_cliente
 inner join client_data.dbo."CLIENTES" as clientes
-    on presupuesto_por_cliente.codigo_de_cliente = clientes."CODIGO DE CLIENTE"
+    on presupuesto_por_cliente.codigo_de_cliente = clientes."CODIGO DE CLIENTE" and clientes._fivetran_deleted = false
 where presupuesto_por_cliente._fivetran_deleted = false
-    and clientes._fivetran_deleted = false

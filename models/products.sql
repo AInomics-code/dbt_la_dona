@@ -17,9 +17,7 @@ select
     (productos."MAQUILA" = 'SI') as outsourced
 from client_data.dbo."PRODUCTOS" as productos
 left join client_data.dbo."TIPOS" as tipos
-	on tipos."CODIGO DE TIPO" = productos."CODIGO DE TIPO"
+	on tipos."CODIGO DE TIPO" = productos."CODIGO DE TIPO" and tipos._fivetran_deleted = false  
 left join client_data.dbo."CLASES" as clases
-	on clases."CODIGO DE CLASE" = productos."CODIGO DE CLASE"
+	on clases."CODIGO DE CLASE" = productos."CODIGO DE CLASE" and clases._fivetran_deleted = false
 where productos._fivetran_deleted = false
-    and tipos._fivetran_deleted = false
-    and clases._fivetran_deleted = false
