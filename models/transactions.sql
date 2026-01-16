@@ -4,7 +4,7 @@
 ) }}
 
 select
-    ventas."FECHA" as date,
+    ventas."FECHA"::date as date,
     'SALE' as transaction_type,
     ventas."TIPO DE TRANSACCION" as transaction_type_raw,
     ventas."CODIGO DE DEPOSITO" as location_id,
